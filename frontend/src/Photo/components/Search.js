@@ -108,7 +108,6 @@ function Search({
     let imageData = imageCanvas.toDataURL("image/jpeg");
     const base64data = imageData.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
     searchPhoto(base64data);
-
     updateZonesCanvas();
   }
 
@@ -141,7 +140,6 @@ function Search({
     if (!prediction || !prediction.detections || !imageCanvas.getContext) {
       return;
     }
-
     prediction.detections.forEach((d) => drawDetection(d));
   }
 

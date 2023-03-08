@@ -90,7 +90,7 @@ function Photo({
     let imageData = imageCanvas.toDataURL("image/jpeg");
     const base64data = imageData.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
     searchPhoto(base64data);
-
+    console.log('photo searched')
     //updateZonesCanvas();
   }
 
