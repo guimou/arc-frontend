@@ -6,6 +6,8 @@ const storage = require("../../../storage");
 const axios = require("../../../utils/axios");
 const { OBJECT_DETECTION_URL, KAFKA_TOPIC_IMAGES } = require("../../../utils/constants");
 const imageStoragePrefix = "images";
+const FormData = require('form-data');
+const Blob = require('buffer');
 
 module.exports = async function (fastify, opts) {
   fastify.post("/", async function (request, reply) {
@@ -56,13 +58,19 @@ function generateFilename() {
 async function requestObjectDetection(image) {
   let code, data;
   try {
+    let bf = Buffer.from(image, "base64");
+    const formData = new FormData();
+    formData.append('file', bf, 'image.jpg');
     const response = await axios({
       method: "POST",
       url: OBJECT_DETECTION_URL,
-      data: { image },
+      data: formData,
+      headers: { ...formData.getHeaders(),},
     });
     code = response.status;
+    console.log(code)
     data = response.data;
+    console.log(data)
   } catch (error) {
     if (error.response) {
       code = error.response.status;
