@@ -238,8 +238,6 @@ function Photo({
   }
 
   function renderCamera() {
-    const displayVideoToggle = status.kafka === "connected" ? {} : { display: "none" };
-
     if (!cameraEnabled || image) {
       return null;
     }
@@ -276,18 +274,6 @@ function Photo({
           >
             <FontAwesomeIcon icon={faCircle} />
           </Button>
-        </div>
-        <div className="right-button-container button-container">
-          <Link to={"/video"} style={displayVideoToggle}>
-            <Button
-              variant="contained"
-              size="large"
-              className="choose-camera-button"
-              onClick={onFacingModeClicked}
-            >
-              <FontAwesomeIcon icon={faVideoSlash} />
-            </Button>
-          </Link>
         </div>
       </div>
     );
