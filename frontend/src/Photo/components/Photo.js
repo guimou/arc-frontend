@@ -151,14 +151,16 @@ function Photo({
 
     
     drawBox(x, y, width, height, labelSetting.bgColor);
-    //drawBoxTextBG(x, y + height - textBgHeight, labelWidth, textBgHeight, labelSetting.bgColor);
-    //drawBoxText(text, x + padding, y + height - padding);
+    drawBoxTextBG(x, y + height - textBgHeight, labelWidth, textBgHeight, labelSetting.bgColor);
+    drawBoxText(text, x + padding, y + height - padding);
     drawCoupon(cValue, x, y, width, height);
     clearZone(x + 5, y + height - textBgHeight - 4, labelWidth, textBgHeight);
     clearZone(x, y, width, height);
   }
 
   function drawBox(x, y, width, height, color) {
+    console.log('drawing box')
+    console.log(x, y, width, height, color)
     const ctx = imageCanvas.getContext("2d");
     ctx.lineWidth = 2;
     ctx.setLineDash([5, 15]);
@@ -182,6 +184,7 @@ function Photo({
   }
 
   function drawCoupon(message, x, y, width, height) {
+    console.log('drawing coupon')
     const ctx = imageCanvas.getContext("2d");
     const couponText = String(message);
     const angle = 0.25;
@@ -209,6 +212,9 @@ function Photo({
       ctx.font = "20px Verdana";
       ctx.fillStyle = "white";
       ctx.fillText(couponText, 35, 14);
+      // Reinitialize context
+      ctx.rotate(-angle);
+      ctx.translate(-baseX, -baseY)
     } else { // Draw on the left side
       const baseX = x + 0.25 * width;
       const baseY = y + 0.3 * height;
@@ -232,6 +238,9 @@ function Photo({
       ctx.font = "20px Verdana";
       ctx.fillStyle = "white";
       ctx.fillText(couponText, -125, 14);
+      // Reinitialize context
+      ctx.rotate(angle);
+      ctx.translate(baseX, baseY)
     }
   }
 
