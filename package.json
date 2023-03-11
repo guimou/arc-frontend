@@ -34,7 +34,6 @@
     "fastify-static": "^4.4.2",
     "fastify-websocket": "^4.0.0",
     "got": "^11.8.2",
-    "kafkajs": "^1.15.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "uuid": "^8.3.2",
