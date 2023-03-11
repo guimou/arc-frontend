@@ -9,13 +9,6 @@ const WebSocket = require("fastify-websocket");
 const processSocketMessage = require("./socket/process-socket-message");
 const socketInit = require("./socket/init");
 
-const Kafka = require("./plugins/kafka");
-// const Kafka = require("fastify-kafka");
-// const { Kafka } = require('kafkajs')
-
-const kafkaConfig = require("./kafka/config");
-const kafkaInit = require("./kafka/init");
-
 global.users = {};
 
 const wsOpts = {
@@ -29,17 +22,6 @@ module.exports = async function (fastify, opts) {
     root: path.join(__dirname, "frontend/build"),
     wildcard: false,
   });
-
-  if (kafkaConfig) {
-    // fastify.log.info("%j", kafkaConfig);
-    try {
-      fastify.register(Kafka, kafkaConfig);
-    } catch (err) {
-      fastify.log.error("%j", err);
-    }
-  } else {
-    fastify.log.warn("kafkaConfig empty");
-  }
 
   fastify.register(WebSocket, {
     options: wsOpts,
@@ -58,8 +40,5 @@ module.exports = async function (fastify, opts) {
 
   await fastify.ready(async () => {
     socketInit(fastify);
-    if (fastify.kafka && fastify.kafka.instance) {
-      await kafkaInit(fastify);
-    }
   });
 };
