@@ -146,7 +146,7 @@ function Video({
 
   function drawBoxTextBG(x, y, width, height, color) {
     const ctx = imageCanvas.getContext("2d");
-    
+
     ctx.fillStyle = color;
     ctx.fillRect(x, y, width, height);
   }
@@ -274,10 +274,8 @@ function Video({
               playsInline
             />
             <div className="horizontal overlay">
-              {/*<HorizontalCameraBorder className={"horizontal-camera-border-svg"} />*/}
             </div>
             <div className="vertical overlay">
-              {/*<VerticalCameraBorder className={"vertical-camera-border-svg"} />*/}
             </div>
           </div>
         </div>

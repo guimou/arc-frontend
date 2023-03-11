@@ -255,12 +255,6 @@ function Photo({
               autoPlay
               playsInline
             />
-            <div className="horizontal overlay">
-              {/*<HorizontalCameraBorder className={"horizontal-camera-border-svg"} />*/}
-            </div>
-            <div className="vertical overlay">
-              {/*<VerticalCameraBorder className={"vertical-camera-border-svg"} />*/}
-            </div>
           </div>
         </div>
         <div className="left-button-container button-container">

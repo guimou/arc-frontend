@@ -40,12 +40,6 @@
     }
   }
 
-  .camera svg.vertical-camera-border-svg,
-  .camera svg.horizontal-camera-border-svg {
-    max-height: 90%;
-    max-width: 90%;
-  }
-
   .object-detection .img-container {
     .overlay.loading,
     .overlay.no-objects {
@@ -152,14 +146,6 @@
         //}
       }
 
-      svg.vertical-camera-border-svg {
-        display: block;
-      }
-
-      svg.horizontal-camera-border-svg {
-        display: none;
-      }
-
       .button-container {
         min-width: 80px;
       }
@@ -214,13 +200,6 @@
         min-height: 100%;
       }
 
-      svg.vertical-camera-border-svg {
-        display: none;
-      }
-
-      svg.horizontal-camera-border-svg {
-        display: block;
-      }
     }
 
     .button-container {
