@@ -90,7 +90,6 @@ function Photo({
     let imageData = imageCanvas.toDataURL("image/jpeg");
     const base64data = imageData.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
     searchPhoto(base64data);
-    console.log('photo searched')
     //updateZonesCanvas();
   }
 
@@ -149,48 +148,41 @@ function Photo({
     const labelSetting = labelSettings[label];
     const labelWidth = label.length * letterWidth + scoreWidth + padding * 2;
 
-    
-    drawBox(x, y, width, height, labelSetting.bgColor);
-    drawBoxTextBG(x, y + height - textBgHeight, labelWidth, textBgHeight, labelSetting.bgColor);
-    drawBoxText(text, x + padding, y + height - padding);
-    drawCoupon(cValue, x, y, width, height);
-    clearZone(x + 5, y + height - textBgHeight - 4, labelWidth, textBgHeight);
-    clearZone(x, y, width, height);
+    const ctx = imageCanvas.getContext("2d");
+    drawBox(ctx, x, y, width, height, labelSetting.bgColor);
+    drawBoxTextBG(ctx, x, y + height - textBgHeight, labelWidth, textBgHeight, labelSetting.bgColor);
+    drawBoxText(ctx, text, x + padding, y + height - padding);
+    drawCoupon(ctx, cValue, x, y, width, height);
+    //clearZone(ctx, x + 5, y + height - textBgHeight - 4, labelWidth, textBgHeight);
+    //clearZone(ctx, x, y, width, height);
   }
 
-  function drawBox(x, y, width, height, color) {
-    console.log('drawing box')
-    console.log(x, y, width, height, color)
-    const ctx = imageCanvas.getContext("2d");
+  function drawBox(ctx, x, y, width, height, color) {
     ctx.lineWidth = 2;
     ctx.setLineDash([5, 15]);
     ctx.strokeStyle = color;
     ctx.strokeRect(x, y, width, height);
   }
 
-  function drawBoxTextBG(x, y, width, height, color) {
-    const ctx = imageCanvas.getContext("2d");
-
+  function drawBoxTextBG(ctx, x, y, width, height, color) {
     // ctx.strokeStyle = getLabelSettings(label).color;
     ctx.fillStyle = color;
     ctx.fillRect(x, y, width, height);
   }
 
-  function drawBoxText(text, x, y) {
-    const ctx = imageCanvas.getContext("2d");
+  function drawBoxText(ctx, text, x, y) {
     ctx.font = "12px Mono";
     ctx.fillStyle = "white";
     ctx.fillText(text, x, y);
   }
 
-  function drawCoupon(message, x, y, width, height) {
-    console.log('drawing coupon')
-    const ctx = imageCanvas.getContext("2d");
+  function drawCoupon(ctx, message, x, y, width, height) {
     const couponText = String(message);
     const angle = 0.25;
 
-    if ( (x + 0.5 * width + 135) < imageCanvas.width) {  // Draw on the right side
-      const baseX = x + 0.5 * width;
+    if ( (x + 0.75 * width + 135) < imageCanvas.width) {  // Draw on the right side
+      console.log('Draw on the right side')
+      const baseX = x + 0.75 * width;
       const baseY = y + 0.3 * height;
       // Draw coupon
       ctx.translate(baseX, baseY)
@@ -216,6 +208,7 @@ function Photo({
       ctx.rotate(-angle);
       ctx.translate(-baseX, -baseY)
     } else { // Draw on the left side
+      console.log('Draw on the left side')
       const baseX = x + 0.25 * width;
       const baseY = y + 0.3 * height;
       // Draw coupon
@@ -240,12 +233,12 @@ function Photo({
       ctx.fillText(couponText, -125, 14);
       // Reinitialize context
       ctx.rotate(angle);
-      ctx.translate(baseX, baseY)
+      ctx.translate(-baseX, -baseY)
     }
   }
 
-  function clearZone(x, y, width, height) {
-    const ctx = zonesCanvas.getContext("2d");
+  function clearZone(ctx, x, y, width, height) {
+    //const ctx = zonesCanvas.getContext("2d");
     ctx.clearRect(x - 3, y - 6, width + 6, height + 6);
   }
 

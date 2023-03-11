@@ -28,7 +28,6 @@ export const photoReducer = (state = initialState, action) => {
         predictionError: null,
       };
     case SEARCH_PHOTO_FULFILLED:
-      console.log('here')
       return {
         ...state,
         predictionPending: false,
