@@ -146,8 +146,7 @@ function Video({
 
   function drawBoxTextBG(x, y, width, height, color) {
     const ctx = imageCanvas.getContext("2d");
-
-    // ctx.strokeStyle = getLabelSettings(label).color;
+    
     ctx.fillStyle = color;
     ctx.fillRect(x, y, width, height);
   }

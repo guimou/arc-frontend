@@ -21,23 +21,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const labelSettings = {
-  Anaconda: {
+  bottle: {
     bgColor: "#3DB048",
     width: 90,
   },
-  SAS: {
+  hat: {
     bgColor: "#007CC2",
     width: 43,
   },
-  Cloudera: {
+  shirt: {
     bgColor: "#F96703",
     width: 89,
   },
-  "Red Hat": {
-    bgColor: "#EE0001",
-    width: 75,
-  },
 };
+
 
 function getLabelSettings(label) {
   const defaultSettings = {
@@ -61,8 +58,6 @@ function Search({
   const [imageCanvas, setImageCanvas] = useState(null);
   const [zonesCanvas, setZonesCanvas] = useState(null);
   const [facingMode, setFacingMode] = useState("environment");
-
-  const classes = useStyles();
 
   useEffect(() => {
     enableCamera();
@@ -179,7 +174,6 @@ function Search({
   function drawBoxTextBG(x, y, width, height, color) {
     const ctx = imageCanvas.getContext("2d");
 
-    // ctx.strokeStyle = getLabelSettings(label).color;
     ctx.fillStyle = color;
     ctx.fillRect(x, y, width, height);
   }

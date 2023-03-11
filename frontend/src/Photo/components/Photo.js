@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback, Component } from "react";
+import React, { useState, useEffect, useCallback, } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Button, Switch } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { resetSearch, searchPhoto } from "../actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -90,7 +90,6 @@ function Photo({
     let imageData = imageCanvas.toDataURL("image/jpeg");
     const base64data = imageData.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
     searchPhoto(base64data);
-    //updateZonesCanvas();
   }
 
   function updateImageCanvas() {
@@ -112,17 +111,6 @@ function Photo({
 
     setImage(imageCanvas.toDataURL());
     setCameraEnabled(false);
-  }
-
-  function updateZonesCanvas() {
-    zonesCanvas.width = imageCanvas.width;
-    zonesCanvas.height = imageCanvas.height;
-
-    const ctx = zonesCanvas.getContext("2d");
-
-    ctx.fillStyle = "#565656";
-    ctx.globalAlpha = 0.7;
-    ctx.fillRect(0, 0, zonesCanvas.width, zonesCanvas.height);
   }
 
   function drawDetections() {
@@ -165,7 +153,6 @@ function Photo({
   }
 
   function drawBoxTextBG(ctx, x, y, width, height, color) {
-    // ctx.strokeStyle = getLabelSettings(label).color;
     ctx.fillStyle = color;
     ctx.fillRect(x, y, width, height);
   }
