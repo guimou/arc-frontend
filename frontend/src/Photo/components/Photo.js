@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback, } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { resetSearch, searchPhoto } from "../actions";
@@ -8,7 +7,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleNotch,
   faSync,
-  faVideoSlash,
   faExclamationCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCircle } from "@fortawesome/free-regular-svg-icons";
@@ -44,14 +42,14 @@ function Photo({
   const [zonesCanvas, setZonesCanvas] = useState(null);
   const [facingMode, setFacingMode] = useState("environment");
 
-  const classes = useStyles();
-
   useEffect(() => {
     enableCamera();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     drawDetections();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [prediction]);
 
   const videoRef = useCallback(

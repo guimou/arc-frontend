@@ -62,8 +62,8 @@ function processWsMessage(state, message) {
       updateLocalStorage(state, message);
       newValues = data;
       break;
-    // default:
-    //   newValues = data;
+    default:
+      newValues = data;
   }
   return { ...state, ...newValues, loading: false, connection: "connected" };
 }
