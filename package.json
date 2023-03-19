@@ -32,6 +32,7 @@
     "fastify-sensible": "^3.1.1",
     "fastify-static": "^4.4.2",
     "fastify-websocket": "^4.0.0",
+    "form-data": "^4.0.0",
     "got": "^11.8.2",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
