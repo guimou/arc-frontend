@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback, } from "react";
 import { connect } from "react-redux";
 import { Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import { resetSearch, searchPhoto } from "../actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,15 +11,6 @@ import {
 import { faCircle } from "@fortawesome/free-regular-svg-icons";
 
 import "./Photo.scss";
-
-const useStyles = makeStyles((theme) => ({
-  button: {
-    margin: theme.spacing(1),
-  },
-  input: {
-    display: "none",
-  },
-}));
 
 function Photo({
   reset,
@@ -39,6 +29,7 @@ function Photo({
   const [videoWidth, setVideoWidth] = useState(0);
   const [videoHeight, setVideoHeight] = useState(0);
   const [imageCanvas, setImageCanvas] = useState(null);
+  // eslint-disable-next-line no-unused-vars
   const [zonesCanvas, setZonesCanvas] = useState(null);
   const [facingMode, setFacingMode] = useState("environment");
 
@@ -220,11 +211,6 @@ function Photo({
       ctx.rotate(angle);
       ctx.translate(-baseX, -baseY)
     }
-  }
-
-  function clearZone(ctx, x, y, width, height) {
-    //const ctx = zonesCanvas.getContext("2d");
-    ctx.clearRect(x - 3, y - 6, width + 6, height + 6);
   }
 
   function onFacingModeClicked() {
