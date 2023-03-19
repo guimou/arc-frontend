@@ -29,4 +29,6 @@ function* watchOutgoingMessage() {
   yield takeLatest(WS_OUTGOING_MESSAGE, sendMessage);
 }
 
-export default [watchIncomingMessage(), watchOutgoingMessage()];
+const exportedObject = [watchIncomingMessage(), watchOutgoingMessage()];
+
+export default exportedObject;

@@ -32,4 +32,6 @@ export function* watchSearchPhoto() {
   yield takeLatest(SEARCH_PHOTO, executeSearchPhoto);
 }
 
-export default [watchSearchPhoto()];
+const exportedObject = [watchSearchPhoto()];
+
+export default exportedObject;
