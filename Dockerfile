@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi7/nodejs-14
+FROM registry.access.redhat.com/ubi9/nodejs-18
 LABEL "io.openshift.s2i.build.image"="registry.redhat.io/ubi7/nodejs-14" \
       "io.openshift.s2i.build.commit.author"="Chris Chase <cchase@redhat.com>" \
       "io.openshift.s2i.build.commit.date"="Tue Oct 26 21:10:24 2021 -0400" \
