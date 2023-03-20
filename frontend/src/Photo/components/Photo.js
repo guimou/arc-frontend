@@ -9,6 +9,7 @@ import {
   faExclamationCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCircle } from "@fortawesome/free-regular-svg-icons";
+import QRCode from 'qrcode';
 
 import "./Photo.scss";
 
@@ -32,6 +33,8 @@ function Photo({
   // eslint-disable-next-line no-unused-vars
   const [zonesCanvas, setZonesCanvas] = useState(null);
   const [facingMode, setFacingMode] = useState("environment");
+  const currentAddress = window.location.href;
+  const [qrCodeUrl, setQRCodeUrl] = useState('');
 
   useEffect(() => {
     enableCamera();
@@ -42,6 +45,14 @@ function Photo({
     drawDetections();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [prediction]);
+
+  useEffect(() => {
+    const currentAddress = window.location.href;
+    QRCode.toDataURL(currentAddress, function(err, url) {
+      if (err) throw err;
+      setQRCodeUrl(url);
+    });
+  }, []);
 
   const videoRef = useCallback(
     (node) => {
@@ -153,7 +164,7 @@ function Photo({
   }
 
   function drawCoupon(ctx, message, x, y, width, height) {
-    const couponText = String(message);
+    const couponText = String(message) + '%';
     const angle = 0.25;
 
     if ( (x + 0.75 * width + 135) < imageCanvas.width) {  // Draw on the right side
@@ -334,10 +345,19 @@ function Photo({
     );
   }
 
+  function renderQRCode() {
+    return (
+      <div className="img-preview">
+        <img src={qrCodeUrl} alt="QR Code" />
+      </div>
+    );
+  }
+
   return (
     <div className="photo">
       {renderCamera()}
       {renderSnapshot()}
+      {renderQRCode()}
     </div>
   );
 }
