@@ -1,9 +1,9 @@
 import React, { lazy, Suspense } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 const Photo = lazy(() => import("../../Photo"));
 
-const Routes = () => (
+const MyRoutes = () => (
   <Suspense
     fallback={
       <div className="route-loading">
@@ -11,13 +11,11 @@ const Routes = () => (
       </div>
     }
   >
-    <Switch>
-      <Route exact path="/">
-        <Redirect to="/photo" />
-      </Route>
-      <Route path="/photo" exact component={Photo} />
-    </Switch>
+    <Routes>
+      <Route path="*" element={<Navigate to={"/photo"}/>} />
+      <Route path="/photo" exact element={<Photo />} />
+    </Routes>
   </Suspense>
 );
 
-export default Routes;
+export default MyRoutes;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, } from "react";
 import { connect } from "react-redux";
-import { Button } from "@material-ui/core";
+import { Button } from "@mui/material";
 import { resetSearch, searchPhoto } from "../actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
