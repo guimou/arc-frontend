@@ -33,7 +33,6 @@ function Photo({
   // eslint-disable-next-line no-unused-vars
   const [zonesCanvas, setZonesCanvas] = useState(null);
   const [facingMode, setFacingMode] = useState("environment");
-  const currentAddress = window.location.href;
   const [qrCodeUrl, setQRCodeUrl] = useState('');
 
   useEffect(() => {
